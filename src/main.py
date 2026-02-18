@@ -1,15 +1,17 @@
-import torch.nn as nn
-import torch
-
 from CharacterTokenizer import CharacterTokenizer
 from LoRALinear import LoRALinear
-from torch.utils.data import DataLoader
-import torch.nn.functional as F
 from GPTDataset import GPTDataset
 from SimpleGPT import SimpleGPT
+from torch.utils.data import DataLoader
+
+import torch.nn as nn
+import torch
+import torch.nn.functional as F
 
 @torch.no_grad()
-def generate(model: SimpleGPT, tokenizer: CharacterTokenizer, prompt: str, device: str, max_new_tokens: int = 50, temp: float = 1.0, top_k: int = 5) -> str:
+def generate(model: SimpleGPT, tokenizer: CharacterTokenizer,
+              prompt: str, device: str, max_new_tokens: int = 50, 
+              temp: float = 1.0, top_k: int = 5) -> str:
     model.eval()
     idx = torch.tensor(tokenizer.encode(prompt), dtype=torch.long).unsqueeze(0).to(device)
 

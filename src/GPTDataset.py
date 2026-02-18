@@ -6,7 +6,6 @@ from torch.utils.data import Dataset
 class Tokenizer(Protocol):
     def encode(self, text: str) -> list[int]: ...
 
-
 class GPTDataset(Dataset[tuple[torch.Tensor, torch.Tensor]]):
     def __init__(self, text: str, seq_length: int, tokenizer: Tokenizer) -> None:
         self.data = torch.tensor(tokenizer.encode(text), dtype=torch.long)

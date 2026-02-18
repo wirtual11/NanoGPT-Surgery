@@ -3,7 +3,8 @@ import torch
 import torch.nn as nn
     
 class SimpleGPT(nn.Module):
-    def __init__(self, vocab_size:int, n_embd:int=128, n_head:int=4, n_layer:int=4, block_size:int=256):
+    def __init__(self, vocab_size:int, n_embd:int=128, 
+                 n_head:int=4, n_layer:int=4, block_size:int=256):
         super().__init__()
         self.block_size = block_size
         self.tok_emb = nn.Embedding(vocab_size, n_embd)
