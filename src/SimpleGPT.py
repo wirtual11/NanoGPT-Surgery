@@ -15,7 +15,7 @@ class SimpleGPT(nn.Module):
         self.lm_head = nn.Linear(n_embd, vocab_size)
 
     def forward(self, idx: torch.Tensor) -> torch.Tensor:
-        t = idx.size()
+        t = idx.size(1)
         x = self.tok_emb(idx) + self.pos_emb[:, :t, :]
         for layer in self.layers: x = layer(x)
         return self.lm_head(self.ln_f(x))
