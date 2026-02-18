@@ -11,9 +11,9 @@ class CharacterTokenizer:
         # 1 -> 'a', 2 -> 'b'...
         self.itos = { i:ch for i,ch in enumerate(chars) }
 
-    def encode(self, s: str) -> list[int]:
+    def encode(self, text: str) -> list[int]:
         # String -> List of Integers
-        return [self.stoi[c] for c in s]
+        return [self.stoi[c] for c in text]
 
     def decode(self, l: list[int]) -> str:
         # List of Integers -> String

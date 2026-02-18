@@ -2,8 +2,6 @@ import torch.nn as nn
 import torch
 
 from CharacterTokenizer import CharacterTokenizer
-from GPTDataset import GPTDataset
-from SimpleGPT import SimpleGPT
 from LoRALinear import LoRALinear
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
@@ -42,8 +40,8 @@ if __name__ == "__main__":
     # 4. Generate
     print("\nGenerated Output:", generate(model, tokenizer, "This is", max_new_tokens=10))
 
-@torch.no_grad()
-def generate(model, tokenizer, prompt, max_new_tokens=50, temp=1.0, top_k=5):
+@torch.no_grad()        
+def generate(model: SimpleGPT, tokenizer: CharacterTokenizer, prompt: str, max_new_tokens: int = 50, temp: float = 1.0, top_k: int = 5) -> str:
     model.eval()
     idx = torch.tensor(tokenizer.encode(prompt), dtype=torch.long).unsqueeze(0).to(device)
     
